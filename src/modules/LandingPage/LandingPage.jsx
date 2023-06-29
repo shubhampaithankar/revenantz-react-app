@@ -1,14 +1,25 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
+import { styled, Box } from '@mui/system';
+
+import config from '../../config.json'
+
+import { ImageLogo } from '../../components/CommonComponents.js';
 
 const LandingPage = () => {
+
+  const LogoStyled = styled(ImageLogo)({
+    width: '55px', 
+    marginTop: '4px',
+  })
+
+
   const HandleClick = (number) => {
     switch (number) {
       case 1:
-        window.open('https://www.google.com', '_blank')
+        window.open(config.discord_url, '_blank')
         break;
       case 2:
-        window.open('https://www.youtube.com', '_blank')
         break;
       default: return
     }
@@ -19,68 +30,68 @@ const LandingPage = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '100%'
+            height: '100%',
+            marginTop: '-75px',
           }}
         >
-          <img src={process.env.PUBLIC_URL + '/assets/logo.png' } alt="RevenantZ Logo" style={{ width: '600px', height: 'auto' }} />
-          <Box sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center', 
-              marginTop: '25px',
-            }}
-          >
-            <Typography variant="h4" component="h1" sx={{ 
+          <Box sx={{ textAlign: 'center', }}>
+            <Typography variant="h4" component="h3" sx={{ 
                   color: 'whitesmoke', 
-                  fontFamily: '"Ysabeau SC", sans-serif;',
-                  fontSize: '2.75rem'
+                  fontSize: '4rem',
+                  letterSpacing: '8px'
                 }}
             >
-              JOIN OUR COMMUNITY!
+              WELCOME TO
             </Typography>
-            <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                margin: '1rem 0',
-                width: '100%',
-                marginTop: '10px',
-              }}
+            <Typography variant="h1" component="h1" sx={{ 
+                  color: 'red', 
+                  fontSize: '8rem'
+                }}
             >
-              <Box onClick={() => HandleClick(1)} sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                cursor: 'pointer',
-              }}>
-                {/* <AccessAlarm /> */}
-                <img src={process.env.PUBLIC_URL + '/assets/svg/discord-logo.svg'} alt="discord-logo" style={{ width: '1.75rem', marginTop: '4px' }}/>
-                <Typography variant="h4" component="h2" sx={{ 
-                    color: 'whitesmoke', 
-                    fontSize: '1.75rem',
-                    fontFamily: '"Ysabeau SC", sans-serif;',
-                    padding: '0 0.75rem'
-                }}>
-                  DISCORD
-                </Typography>
-              </Box>
-              <Box onClick={() => HandleClick(2)} sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                cursor: 'pointer',
-              }}>
-                <img src={process.env.PUBLIC_URL + '/assets/svg/steam-logo.svg'} alt="steam-logo" style={{ width: '1.75rem', marginTop: '4px' }}/>
-                <Typography variant="h4" component="h2" sx={{ 
-                    color: 'whitesmoke', 
-                    fontSize: '1.75rem',
-                    fontFamily: '"Ysabeau SC", sans-serif;',
-                    padding: '0 0.75rem'
-                }}>
-                  STEAM
-                </Typography>
-              </Box>
+              REVENANTZ
+            </Typography>
+          </Box>
+          <Box sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+              flexWrap: 'wrap',
+              // margin: '1rem 0',
+              marginTop: '75px',
+              width: '100%',
+            }}
+          >
+            <Box onClick={() => HandleClick(1)} sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+              cursor: 'pointer',
+            }}>
+              <LogoStyled  src={process.env.PUBLIC_URL + '/assets/svg/discord-logo-white.svg'} alt="discord-logo" />
+            </Box>
+            <Box onClick={() => HandleClick(2)} sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+              cursor: 'pointer',
+            }}>
+              <LogoStyled src={process.env.PUBLIC_URL + '/assets/svg/steam-logo-white.svg'} alt="steam-logo" />
+            </Box>
+            <Box onClick={() => HandleClick(3)} sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+              cursor: 'pointer',
+            }}>
+              <LogoStyled src={process.env.PUBLIC_URL + '/assets/svg/instagram-logo-white.svg'} alt="steam-logo" />
+            </Box>
+            <Box onClick={() => HandleClick(4)} sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+              cursor: 'pointer',
+            }}>
+              <LogoStyled src={process.env.PUBLIC_URL + '/assets/svg/youtube-logo-white.svg'} alt="steam-logo" />
             </Box>
           </Box>
         </Box>

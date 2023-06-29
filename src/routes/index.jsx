@@ -4,7 +4,7 @@ import { publicRoutes } from "./publicRoutes"
 
 export const AppRoutes = () => {
     return useRoutes([
-        ...publicRoutes
+        ...publicRoutes,
     ])
 }
   
