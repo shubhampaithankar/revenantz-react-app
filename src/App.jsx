@@ -1,34 +1,41 @@
-import React from 'react'
+import React, { useRef, Suspense } from 'react'
 import { Container } from '@mui/system'
-
-import Navbar from './components/Navbar/Navbar'
-import Background from './components/Background/Background'
-import LandingPage from './modules/LandingPage/LandingPage'
-import AboutPage from './modules/AboutPage/AboutPage'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
-const App = () => {
+import Background from './components/Background/Background'
+import Navbar from './components/Navbar/Navbar'
 
-  const theme  = createTheme({
-    typography: {
-      allVariants: {
-        fontFamily: 'Rajdhani',
-        color: 'whitesmoke'
-      },
+import { LandingPage, AboutPage, ServerListPage } from './modules/modules'
+
+const theme  = createTheme({
+  typography: {
+    allVariants: {
+      fontFamily: 'Rajdhani',
+      color: 'whitesmoke'
     },
-  })
+  },
+})
 
+const App = () => {
+  const landingPage = useRef(null)
+  const aboutPage = useRef(null)
+  const serverListPage = useRef(null)
+
+  const navbarProps = {
+    landingPage, aboutPage, serverListPage
+  }
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Background />
-        <Navbar />
+        <Navbar {...navbarProps} />
         <Container disableGutters maxWidth={false} sx={{ height: '100vh' }}>
-          <LandingPage />
-          <AboutPage />
+          <LandingPage landingPage={landingPage} />
+          <AboutPage aboutPage={aboutPage} />
+          <ServerListPage />
         </Container>
-      </ThemeProvider>
-    </>
+      </Suspense>
+    </ThemeProvider>
   )
 }
 

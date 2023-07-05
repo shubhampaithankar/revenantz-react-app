@@ -63,68 +63,72 @@ const DexterImage = styled('img') ({
 
 })
 
-const AboutPage = () => {
-  return (
-    <Box sx={{
-        height: '100%',
-        backgroundColor: '#1b1b1b',
-        display: 'flex',
-        alignItems: 'stretch'
-    }}>
-        <Grid container maxHeight={false}>
-            <Grid item xs={6} sx={{ textAlign: 'center' }}>
-                <PageHeader disableRipple>
-                    ABOUT US
-                </PageHeader>
-            </Grid>
-            <Grid item xs={6}></Grid>
-            <Grid item xs={12} maxHeight='100%'>
-                <Grid container maxHeight='100%'>
-                    <Grid item xs={6}>
-                        <Box sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            height: '100%',
-                            marginTop: '50px'
-                        }}>
-                            <DexterImage src={process.env.PUBLIC_URL + '/assets/images/dexter.png'} alt='dexter'/>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Box sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'space-evenly',
-                            height: '100%',
-                            padding: '0 0.5rem',
+const AboutPage = ({ aboutPage }) => {
+    const handleClick = () => window.location = 'mailto:revenantz.gg@gmail.com'
 
-                        }}>
-                            <InfoHeader component={'h2'}>
-                                REVENANTZ
-                            </InfoHeader>
-                            <InfoText component={'span'} sx={{ fontWeight: '700' }}>
-                                AN ASIAN GAMING COMMUNITY WHERE PLAYERS CAN HAVE FUN & MAKE NEW FRIENDS.
-                            </InfoText>
-                            <InfoText component={'span'}>
-                                Revenantz is a CS:GO Community with servers accross Asia, mainly in SIngapore & India.
-                            </InfoText>
-                            <InfoText component={'span'}>
-                                We host events of many esports titles such as CS, Valorant, etc along with community events in our custom Counter-Strike servers.
-                            </InfoText>
-                            <InfoText component={'span'}>
-                                Feel free to email us regarding Scrim / Tournament CS:GO Servers & Esports related projects. 
-                            </InfoText>
-                            <RedButton sx={{ width: '250px', margin: '20px 0', fontWeight: '600' }}>
-                                Contact us via Email
-                            </RedButton>
-                        </Box>
+    return (
+        <Box sx={{
+            height: '100%',
+            backgroundColor: '#1b1b1b',
+            display: 'flex',
+            alignItems: 'stretch'
+        }}
+        ref={aboutPage}
+        >
+            <Grid container maxHeight={false}>
+                <Grid item xs={6} sx={{ textAlign: 'center' }}>
+                    <PageHeader disableRipple>
+                        ABOUT US
+                    </PageHeader>
+                </Grid>
+                <Grid item xs={6}></Grid>
+                <Grid item xs={12} maxHeight='100%'>
+                    <Grid container maxHeight='100%'>
+                        <Grid item xs={6}>
+                            <Box sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                height: '100%',
+                                marginTop: '50px'
+                            }}>
+                                <DexterImage src={process.env.PUBLIC_URL + '/assets/images/dexter.png'} alt='dexter'/>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Box sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-evenly',
+                                height: '100%',
+                                padding: '0 0.5rem',
+
+                            }}>
+                                <InfoHeader component={'h2'}>
+                                    REVENANTZ
+                                </InfoHeader>
+                                <InfoText component={'span'} sx={{ fontWeight: '700' }}>
+                                    AN ASIAN GAMING COMMUNITY WHERE PLAYERS CAN HAVE FUN & MAKE NEW FRIENDS.
+                                </InfoText>
+                                <InfoText component={'span'}>
+                                    Revenantz is a CS:GO Community with servers accross Asia, mainly in Singapore & India.
+                                </InfoText>
+                                <InfoText component={'span'}>
+                                    We host events of many esports titles such as CS, Valorant, etc along with community events in our custom Counter-Strike servers.
+                                </InfoText>
+                                <InfoText component={'span'}>
+                                    Feel free to email us regarding Scrim / Tournament CS:GO Servers & Esports related projects. 
+                                </InfoText>
+                                <RedButton sx={{ width: '250px', margin: '20px 0', fontWeight: '600' }} onClick={handleClick}>
+                                    Contact us via Email
+                                </RedButton>
+                            </Box>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
-    </Box>
-  )
+        </Box>
+    )
 }
 
 export default AboutPage

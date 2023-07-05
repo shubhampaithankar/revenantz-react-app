@@ -4,10 +4,12 @@ import { styled } from '@mui/system'
 
 import { ImageLogo, TextWithRedLine } from '../CommonComponents';
 
+import config from '../../config.json'
+
 const LinkStyled = styled(TextWithRedLine)({
     position: 'relative',
     fontSize: '1.75rem',
-    fontWeight: '600',
+    fontWeight: '900',
 
     '@media (max-width: 1600px)': {
         fontSize: '1.2rem',
@@ -15,8 +17,8 @@ const LinkStyled = styled(TextWithRedLine)({
     
     '::after': {
         transition: 'left 0.3s',
-        width: '25px',
-        height: '2px',
+        width: '30px',
+        height: '5px',
     },
 
     ':hover': {
@@ -44,29 +46,39 @@ const AppBarStyle = styled(AppBar)({
     }
 })
 
-const Navbar = () => {
+const Navbar = ({ landingPage, aboutPage, serverListPage }) => {
+    const handleClick = (nav) => {
+        switch (nav) {
+            case 'about': return aboutPage.current?.scrollIntoView({ behavior: 'smooth' })
+            case 'vip': return
+            case 'home': return window.scrollTo({ top: 0, behavior: 'smooth' })
+            case 'ranks': return window.open(config.links.ranks, '_self')
+            case 'bans': return window.open(config.links.bans, '_self')
+            default: return;
+        }
+    }
     return (
         <AppBarStyle position='static'>
             <Grid container spacing={0} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Grid item xs={2} sx={{ textAlign: 'center'}}>
-                    <LinkStyled disableRipple>
+                    <LinkStyled disableRipple onClick={() => handleClick('about')}>
                         ABOUT US
                     </LinkStyled>
                 </Grid>
                 <Grid item xs={2} sx={{ textAlign: 'center' }}>
-                    <LinkStyled disableRipple>
+                    <LinkStyled disableRipple onClick={() => handleClick('vip')}>
                         VIP MEMBERSHIP
                     </LinkStyled>
                 </Grid>
                 <Grid item xs={4} sx={{ textAlign: 'center' }}>
-                    <ImageLogo src={process.env.PUBLIC_URL + '/assets/logo.png' } alt="RevenantZ Logo" sx={{ width: '175px' }} />
+                    <ImageLogo onClick={() => handleClick('home')} src={process.env.PUBLIC_URL + '/assets/logo.png' } alt="RevenantZ Logo" sx={{ width: '175px' }} />
                 </Grid>
                 <Grid item xs={2} sx={{ textAlign: 'center' }}>
-                    <LinkStyled disableRipple>                        
+                    <LinkStyled disableRipple onClick={() => handleClick('ranks')}>                        
                         RANK AND STATS
                     </LinkStyled>                
                 </Grid>
-                <Grid item xs={2} sx={{ textAlign: 'center' }}>
+                <Grid item xs={2} sx={{ textAlign: 'center' }} onClick={() => handleClick('bans')}>
                     <LinkStyled disableRipple>
                         BANS
                     </LinkStyled>

@@ -1,3 +1,34 @@
 {
-    "discord_url": "https://discord.com/invite/revenantz"
+    "links": {
+        "discord": "https://discord.com/invite/fahF62v",
+        "steam": "https://steamcommunity.com/groups/revenantzgg",
+        "instagram": "https://www.instagram.com/revenantz.gg",
+        "youtube": "https://www.youtube.com/@revenantzgg",
+        "bg_video": "https://revenantz.net/bg_loop_1337.mp4",
+        "ranks": "https://revenantz.net/ranks/",
+        "vip": "",
+        "bans": "https://revenantz.net/bans/"
+    },
+    "games": {
+        "csgo": {
+            "servers": [
+                {
+                    "name": "Retakes #1 SG",
+                    "ip": "15.235.151.54:27015"
+                },
+                {
+                    "name": "Retakes #2 SG",
+                    "ip": "51.79.137.42:27015"
+                },
+                {
+                    "name": "Executes #1 SG",
+                    "ip": "139.99.30.136:27015"
+                },
+                {
+                    "name": "Executes #2 SG",
+                    "ip": "139.99.53.147:27015"
+                }
+            ]
+        }
+    }
 }
