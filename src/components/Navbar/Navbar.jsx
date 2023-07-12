@@ -5,6 +5,7 @@ import { styled } from '@mui/system'
 import { ImageLogo, TextWithRedLine } from '../CommonComponents';
 
 import config from '../../config.json'
+import { Link } from 'react-router-dom';
 
 const LinkStyled = styled(TextWithRedLine)({
     position: 'relative',
@@ -46,42 +47,40 @@ const AppBarStyle = styled(AppBar)({
     }
 })
 
-const Navbar = ({ landingPage, aboutPage, serverListPage }) => {
-    const handleClick = (nav) => {
-        switch (nav) {
-            case 'about': return aboutPage.current?.scrollIntoView({ behavior: 'smooth' })
-            case 'vip': return
-            case 'home': return window.scrollTo({ top: 0, behavior: 'smooth' })
-            case 'ranks': return window.open(config.links.ranks, '_self')
-            case 'bans': return window.open(config.links.bans, '_self')
-            default: return;
-        }
-    }
+const Navbar = () => {
     return (
         <AppBarStyle position='static'>
             <Grid container spacing={0} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Grid item xs={2} sx={{ textAlign: 'center'}}>
-                    <LinkStyled disableRipple onClick={() => handleClick('about')}>
-                        ABOUT US
-                    </LinkStyled>
+                    <Link to='about'>
+                        <LinkStyled variant='span' disableRipple >
+                            ABOUT US
+                        </LinkStyled>
+                    </Link>
                 </Grid>
                 <Grid item xs={2} sx={{ textAlign: 'center' }}>
-                    <LinkStyled disableRipple onClick={() => handleClick('vip')}>
+                    <LinkStyled variant='span' disableRipple >
                         VIP MEMBERSHIP
                     </LinkStyled>
                 </Grid>
                 <Grid item xs={4} sx={{ textAlign: 'center' }}>
-                    <ImageLogo onClick={() => handleClick('home')} src={process.env.PUBLIC_URL + '/assets/logo.png' } alt="RevenantZ Logo" sx={{ width: '175px' }} />
+                    <Link to='/' onClick={window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                        <ImageLogo src={process.env.PUBLIC_URL + '/assets/logo.png' } alt="RevenantZ Logo" sx={{ width: '175px' }} />
+                    </Link>
                 </Grid>
                 <Grid item xs={2} sx={{ textAlign: 'center' }}>
-                    <LinkStyled disableRipple onClick={() => handleClick('ranks')}>                        
-                        RANK AND STATS
-                    </LinkStyled>                
+                    <a href={config.links.ranks}>
+                        <LinkStyled variant='span' disableRipple>                        
+                            RANK AND STATS
+                        </LinkStyled>                
+                    </a>
                 </Grid>
-                <Grid item xs={2} sx={{ textAlign: 'center' }} onClick={() => handleClick('bans')}>
-                    <LinkStyled disableRipple>
-                        BANS
-                    </LinkStyled>
+                <Grid item xs={2} sx={{ textAlign: 'center' }}>
+                    <a href={config.links.bans}>
+                        <LinkStyled variant='span' disableRipple>
+                            BANS
+                        </LinkStyled>
+                    </a>
                 </Grid>
             </Grid>
           </AppBarStyle>

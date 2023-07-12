@@ -1,14 +1,16 @@
 {
     "links": {
-        "discord": "https://discord.com/invite/fahF62v",
+        "discord": "https://discord.com/invite/revenantz",
         "steam": "https://steamcommunity.com/groups/revenantzgg",
         "instagram": "https://www.instagram.com/revenantz.gg",
         "youtube": "https://www.youtube.com/@revenantzgg",
         "bg_video": "https://revenantz.net/bg_loop_1337.mp4",
+        "about": "https://revenantz.net/about/",
         "ranks": "https://revenantz.net/ranks/",
-        "vip": "",
+        "vip": "https://revenantz.net/vip/",
         "bans": "https://revenantz.net/bans/"
     },
+    "mail": "revenantz.gg@gmail.com",
     "games": {
         "csgo": {
             "servers": [

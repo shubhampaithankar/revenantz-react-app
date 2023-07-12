@@ -1,7 +1,12 @@
+import React, { useContext, useEffect } from 'react'
 import { Grid, Typography } from '@mui/material'
 import { styled, Box } from '@mui/system'
-import React from 'react'
+import { useLocation } from 'react-router-dom'
+
+import { RefContext } from '../../hooks/context/RefContext'
+
 import { RedButton, TextWithRedLine } from '../../components/CommonComponents'
+import config from '../../config.json'
 
 const PageHeader = styled(TextWithRedLine)({
     cursor: 'unset',
@@ -63,17 +68,24 @@ const DexterImage = styled('img') ({
 
 })
 
-const AboutPage = ({ aboutPage }) => {
-    const handleClick = () => window.location = 'mailto:revenantz.gg@gmail.com'
+const AboutPage = () => {
+    const location = useLocation()
+    const refContext = useContext(RefContext)
+
+    useEffect(() => {
+        if (location.pathname === '/about') {
+            refContext.aboutPage.current?.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, [location, refContext.aboutPage])
 
     return (
         <Box sx={{
-            height: '100%',
-            backgroundColor: '#1b1b1b',
-            display: 'flex',
-            alignItems: 'stretch'
-        }}
-        ref={aboutPage}
+                height: '100%',
+                backgroundColor: '#1b1b1b',
+                display: 'flex',
+                alignItems: 'stretch'
+            }} 
+            ref={refContext.aboutPage}
         >
             <Grid container maxHeight={false}>
                 <Grid item xs={6} sx={{ textAlign: 'center' }}>
@@ -119,9 +131,11 @@ const AboutPage = ({ aboutPage }) => {
                                 <InfoText component={'span'}>
                                     Feel free to email us regarding Scrim / Tournament CS:GO Servers & Esports related projects. 
                                 </InfoText>
-                                <RedButton sx={{ width: '250px', margin: '20px 0', fontWeight: '600' }} onClick={handleClick}>
-                                    Contact us via Email
-                                </RedButton>
+                                <a href={`mailto:${config.mail}`}>
+                                    <RedButton sx={{ width: '250px', margin: '20px 0', fontWeight: '600' }}>
+                                        Contact us via Email
+                                    </RedButton>
+                                </a>
                             </Box>
                         </Grid>
                     </Grid>

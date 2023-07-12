@@ -1,11 +1,14 @@
 import { Grid, Tab, Tabs, Typography, Button } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { styled, Box } from '@mui/system';
 import { ReactSVG } from 'react-svg';
+import { useLocation } from 'react-router-dom'
 
-import { TextWithRedLine } from '../../components/CommonComponents'
+import { RefContext } from '../../hooks/context/RefContext'
 
 import config from '../../config.json'
+
+import { TextWithRedLine } from '../../components/CommonComponents'
 
 const PageHeader = styled(TextWithRedLine)({
     cursor: 'unset',
@@ -82,10 +85,12 @@ const getCsgoString = (ipAddress) => `steam://connect/${ipAddress}/730/`
 
 const ServerListPage = () => {
 
+    const location = useLocation()
+    const refContext = useContext(RefContext)
+
     const [currentGame, setCurrentGame] = useState('csgo')
 
     const handleChange = (event, value) => setCurrentGame(value)
-
     const handleClick = (ipAddress) => {
         switch (currentGame) {
             case 'csgo': return window.open(getCsgoString(ipAddress), '_self')
@@ -93,15 +98,23 @@ const ServerListPage = () => {
         }
     }
 
+    useEffect(() => {
+        if (location.pathname === '/servers') {
+            refContext.serverListPage.current?.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, [location, refContext.serverListPage])
+
     return (
         <Box sx={{
-            height: '100%',
-            backgroundColor: '#1b1b1b',
-            overflowY: 'hidden',
-            '@media (max-width: 1600px)': {
-                paddingBottom: '8rem'
-            }
-        }}>
+                height: '100%',
+                backgroundColor: '#1b1b1b',
+                overflowY: 'hidden',
+                '@media (max-width: 1600px)': {
+                    paddingBottom: '8rem'
+                }
+            }}
+            ref={refContext.serverListPage}
+        >
             <Grid container>
                 <Grid item xs={12} textAlign={'center'}>
                     <PageHeader disableRipple>
